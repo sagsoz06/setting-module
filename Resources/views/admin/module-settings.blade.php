@@ -80,7 +80,7 @@
 {!! Form::close() !!}
 @stop
 
-@section('scripts')
+@push('js-stack')
 <script>
 $( document ).ready(function() {
     $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
@@ -99,4 +99,4 @@ $( document ).ready(function() {
     });
 });
 </script>
-@stop
+@endpush
