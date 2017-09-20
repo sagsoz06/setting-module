@@ -19,12 +19,10 @@ class Settings implements Setting
     public function __construct(SettingRepository $setting)
     {
         $this->setting = $setting;
-        if(\Cache::driver('file')->has(config('cache.prefix').'.settings')) {
-            $this->settings = \Cache::driver('file')->get(config('cache.prefix').'.settings');
-        } else {
-            $this->settings = collect($setting->all());
-            \Cache::driver('file')->put(config('cache.prefix').'.settings', $this->settings, 3600);
-        }
+        $this->settings = app('cache')->driver('file')
+            ->remember('settings', 3600, function() use ($setting) {
+                return collect($setting->all());
+            });
     }
 
     /**
