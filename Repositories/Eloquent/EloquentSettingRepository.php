@@ -62,6 +62,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      */
     private function removeTokenKey(&$settings)
     {
+        app('cache')->driver('file')->forget('settings');
         unset($settings['_token']);
     }
 
