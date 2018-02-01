@@ -20,7 +20,7 @@ class Settings implements Setting
     {
         $this->setting = $setting;
         $this->settings = app('cache')->driver('file')
-            ->remember('settings', 3600, function() use ($setting) {
+            ->remember('setting.allSettings', 3600, function() use ($setting) {
                 return collect($setting->all());
             });
     }

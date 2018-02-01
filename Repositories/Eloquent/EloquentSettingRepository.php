@@ -62,7 +62,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      */
     private function removeTokenKey(&$settings)
     {
-        app('cache')->driver('file')->forget('settings');
+        app('cache')->driver('file')->forget('setting.allSettings');
         app('cache')->driver('file')->forget('asgard.locales');
         unset($settings['_token']);
     }
