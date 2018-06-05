@@ -42,9 +42,9 @@ class ThemeServiceProvider extends ServiceProvider
      */
     private function inAdministration()
     {
-        $segment = config('laravellocalization.hideDefaultLocaleInURL', false) ? 1 : 2;
+        $admin_prefix = $this->app['config']->get('asgard.core.core.admin-prefix');
 
-        return $this->app['request']->segment($segment) === $this->app['config']->get('asgard.core.core.admin-prefix');
+        return $this->app['request']->segment(1) === $admin_prefix || $this->app['request']->segment(2) === $admin_prefix;
     }
 
     /**
